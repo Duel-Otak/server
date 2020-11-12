@@ -1,79 +1,49 @@
 'use strict';
 const pertanyaan = [
   {
-    soal: "",
-    jawab: true,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
+    soal: "Pangeran Harry lebih tinggi dari Pangeran William",
     jawab: false,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Unta memiliki tiga set bulu mata",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
-    jawab: false,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
+    soal: "Ada lima nol dalam seratus ribu",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Di Harry Potter, Draco Malfoy tidak memiliki saudara kandung",
+    jawab: false,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Jika Anda menjumlahkan kedua angka di sisi dadu yang berlawanan, jawabannya selalu 7",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
-    jawab: false,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
+    soal: "Kopi terbuat dari buah beri",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
-    jawab: true,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
+    soal: "Bulan hanya 50 persen dari massa Bumi.",
     jawab: false,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
-    jawab: false,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
-    jawab: false,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
+    soal: "Australia lebih lebar dari bulan",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -85,19 +55,31 @@ const pertanyaan = [
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Kera tidak bisa tertawa.",
+    jawab: false,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Siput bisa tidur selama tiga bulan.",
+    jawab: false,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Anda bisa bersin saat tidur",
     jawab: false,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
     soal: "",
-    jawab: false,
+    jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Cula badak terbuat dari rambut.",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -115,19 +97,37 @@ const pertanyaan = [
     updatedAt: new Date()
   },
   {
-    soal: "",
-    jawab: false,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    soal: "",
+    soal: "Dimungkinkan untuk menghipnotis katak dengan meletakkannya di punggungnya dan dengan lembut membelai perutnya.",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Kelelawar selalu berbelok ke kanan saat keluar gua.",
+    jawab: false,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Pupil kambing berbentuk diagonal.",
+    jawab: false,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Menonton film horor tidak memiliki reaksi terhadap tubuh",
+    jawab: false,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Rambut wajah manusia tumbuh lebih cepat daripada rambut lain di tubuh.",
+    jawab: true,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    soal: "Ada kejuaraan dunia melempar ponsel.",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
