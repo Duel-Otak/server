@@ -73,7 +73,7 @@ const pertanyaan = [
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Jepang memiliki semangka persegi.",
     jawab: true,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -85,13 +85,13 @@ const pertanyaan = [
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Semua raja di setumpuk kartu standar memiliki kumis.",
     jawab: false,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    soal: "",
+    soal: "Nemo adalah ikan buntal.",
     jawab: false,
     createdAt: new Date(),
     updatedAt: new Date()
