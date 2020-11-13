@@ -32,6 +32,7 @@ const players = [
     room: "roomId"
   }
 ]
+
 const winners = []
 winners.sort((a,b) => (a.correctAnswer, b.correctAnswer))
 
