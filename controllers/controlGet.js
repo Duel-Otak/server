@@ -61,8 +61,6 @@ class ControlAll {
   }
 
   static joinRoom(req, res) {
-
-
     RoomUser.findAll({ where: { name: req.body.roomname } })
       .then((roomUsers) => {
         for (let i of roomUsers) {
