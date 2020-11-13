@@ -37,12 +37,6 @@ console.log(process.env.NODE_ENV)
 io.on('connection', (socket) => {
   console.log('a user connected')
 
-  socket.on('userLogin', (username) => {
-    console.log('Users Login')
-    players.push({ username })
-    io.emit('USER_LOGIN', players)
-  })
-
   socket.on('getUser',  () => {
     console.log('get user')
     socket.emit('USER_LOGIN', players) 
