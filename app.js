@@ -32,6 +32,10 @@ const players = [
   //   room: 
   // }
 ]
+
+const winners = []
+winners.sort((a,b) => (a.correctAnswer, b.correctAnswer))
+
 console.log(process.env.NODE_ENV)
 
 io.on('connection', (socket) => {
