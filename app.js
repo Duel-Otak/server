@@ -67,7 +67,13 @@ io.on('connection', (socket) => {
   socket.on('ayomulai', (roomname) => {
     socket.broadcast.to(roomname).emit('letsgo')
   })
+  socket.on('userLogin', (username) => {
+    players.push({ username, room: '' })
+    io.emit('USER_LOGIN', players)
+    console.log(players)
+  })
 })
+console.log(players)
 
 http.listen(PORT, () => {
   console.log(`app is running on port http://localhost:${PORT}`)
