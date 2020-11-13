@@ -37,7 +37,6 @@ class ControlAll {
         res.status(201).json({ roomUser: final, roomCreated: roomnya })
       })
       .catch((err) => {
-        console.log(err, '<< ini error create room')
         res.status(500).json(err)
       })
   }
@@ -62,7 +61,6 @@ class ControlAll {
   }
 
   static joinRoom(req, res) {
-
     RoomUser.findAll({ where: { name: req.body.roomname } })
       .then((roomUsers) => {
         for (let i of roomUsers) {
@@ -71,7 +69,7 @@ class ControlAll {
           }
         }
         if (roomUsers.length > 4) {
-          throw { message: 'OOPS ROOM FULL' }
+          throw { message: 'Oops! Stop! Room is Full!' }
         } else {
           return Room.findOne({ where: { roomname: req.body.roomname } })
         }
@@ -88,7 +86,7 @@ class ControlAll {
             })
           }
         } else {
-          throw { message: 'Room not found' }
+          throw { message: 'Yikes! Room is not found!' }
         }
       })
       .then((roomUserCreated) => {
@@ -120,7 +118,7 @@ class ControlAll {
         })
       })
       .then(() => {
-        res.status(200).json({ message: `You left ${roomUserToDelete.name}` })
+        res.status(200).json({ message: `Bye! You left ${roomUserToDelete.name}` })
       })
       .catch((err) => {
         res.status(500).json(err)
@@ -137,7 +135,6 @@ class ControlAll {
         res.status(200).json(roomFound)
       })
       .catch((err) => {
-        console.log(err, '<<')
         res.status(500).json(err)
       })
   }
