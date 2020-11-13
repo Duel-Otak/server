@@ -46,7 +46,6 @@ class ControlAll {
     User.findOne({ where: { name: req.body.name } })
       .then((usernya) => {
         if (usernya) {
-          // throw({me})
           return usernya
         } else {
           return User.create({
@@ -63,31 +62,25 @@ class ControlAll {
   }
 
   static joinRoom(req, res) {
-    // console.log(req.body, "<<<<")
 
     RoomUser.findAll({ where: { name: req.body.roomname } })
       .then((roomUsers) => {
         for (let i of roomUsers) {
           if (i.UserId == req.body.userId) {
-            // throw ({ message: "KAMU SUDAH MASUK" })
             return i
           }
         }
         if (roomUsers.length > 4) {
-          // res.status(400).json({ message: "OOPS ROOM FULL" })
           throw { message: 'OOPS ROOM FULL' }
         } else {
-          // console.log("masuk sini ")
           return Room.findOne({ where: { roomname: req.body.roomname } })
         }
       })
       .then((roomFound) => {
-        // console.log(roomFound.UserId, "<<<<< ini room found")
         if (roomFound) {
           if (roomFound.UserId) {
             return roomFound
           } else {
-            console.log('masuk sini')
             return RoomUser.create({
               RoomId: roomFound.id,
               UserId: req.body.userId,
@@ -102,7 +95,6 @@ class ControlAll {
         res.status(201).json(roomUserCreated)
       })
       .catch((err) => {
-        // console.log(err, "<< ini error")
         res.status(500).json(err)
       })
   }
@@ -151,7 +143,6 @@ class ControlAll {
   }
 
   static getAllUsers(req, res) {
-    // console.log(req.params, 'parmas')
     Room.findOne({
       where: {
         roomname: req.params.name

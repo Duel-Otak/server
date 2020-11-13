@@ -1,31 +1,39 @@
-'use strict'
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  const Model = sequelize.Sequelize.Model
-  class Room extends Model {}
-  Room.init(
-    {
-      roomname: {
-        type: DataTypes.STRING,
-        validate: {
-          isUnique(value) {
-            Room.findOne({ where: { roomname: value } }).then((adaRoom) => {
-              if (adaRoom) {
-                throw new Error('Oops! Room already exists')
-              }
-            })
-          },
-          notNull: { msg: 'Yikes! Please insert name!' },
-          notEmpty: { msg: 'Oops! Please insert room!' }
+  class Room extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  };
+  Room.init({
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        isUnique(value) {
+          Room.findOne({ where: { name: value } }).then((adaRoom) => {
+            if (adaRoom) {
+              throw new Error('Room already exists')
+            }
+          })
         },
-        allowNull: false
-      }
+        notNull: { msg: 'Name is required' },
+        notEmpty: { msg: 'Room should not be empty' }
+      },
+      allowNull: false
     },
-    { sequelize }
-  )
-
-  Room.associate = function(models) {
-    // associations can be defined here
-    Room.belongsToMany(models.User, { through: models.RoomUser })
-  }
-  return Room
-}
+    host: DataTypes.STRING,
+    start: DataTypes.BOOLEAN
+  }, {
+    sequelize,
+    modelName: 'Room',
+  });
+  return Room;
+};
