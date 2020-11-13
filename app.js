@@ -32,12 +32,18 @@ const players = [
     room: "roomId"
   }
 ]
+const winners = []
+winners.sort((a,b) => (a.correctAnswer, b.correctAnswer))
 
 console.log(process.env.NODE_ENV)
 
 io.on('connection', (socket) => {
   console.log('a user connected')
 
+  socket.on('sendTheWinnerToGameOver', (rooms) => {
+    winners.push(rooms)
+    io.emit(' sendTheWinnerToGameOver', winners)
+  })
   socket.on('createRoom', (roomname) => {
     socket.join(roomname)
 
