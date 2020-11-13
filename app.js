@@ -13,6 +13,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', routes)
 
+
+const soal = require('./questions.json')
+console.log(soal)
 const rooms = [
   // {
   //   id: 1,
@@ -40,6 +43,12 @@ console.log(process.env.NODE_ENV)
 
 io.on('connection', (socket) => {
   console.log('a user connected')
+  
+  socket.on('userLogin', (username) => {
+    players.push({ username, room: '' })
+    io.emit('USER_LOGIN', players)
+    console.log(players)
+  })
 
   socket.on('getUser',  () => {
     console.log('get user')
@@ -50,6 +59,7 @@ io.on('connection', (socket) => {
     console.log('get Rooms')
     socket.emit('LIST_ROOMS', rooms) 
   })
+
   // rooms = {host, name}
   socket.on('createRoom', (hostname) => {
     const kamus = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
@@ -70,6 +80,17 @@ io.on('connection', (socket) => {
 
     io.emit('LIST_ROOMS', rooms)
   })
+
+  socket.on('getSoal', () => {
+    const soalAcak = []
+    for (let i = 0; i < 11; i++) {
+      soalAcak.push(soal[Math.floor(Math.random() * soal.length )])
+    }
+    console.log(soal)
+    console.log("soalAcak")
+    io.emit('LIST_SOAL', soalAcak)
+  })
+
   socket.on('joinRoom', (roomname) => {
     socket.join(roomname)
     io.emit('joined', roomname)
@@ -87,12 +108,8 @@ io.on('connection', (socket) => {
   socket.on('ayomulai', (roomname) => {
     socket.broadcast.to(roomname).emit('letsgo')
   })
-  socket.on('userLogin', (username) => {
-    players.push({ username, room: '' })
-    io.emit('USER_LOGIN', players)
-    console.log(players)
-  })
 })
+
 console.log(players)
 
 http.listen(PORT, () => {
