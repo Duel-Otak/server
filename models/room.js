@@ -1,39 +1,31 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
 module.exports = (sequelize, DataTypes) => {
-  class Room extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  Room.init({
-    name: {
-      type: DataTypes.STRING,
-      validate: {
-        isUnique(value) {
-          Room.findOne({ where: { name: value } }).then((adaRoom) => {
-            if (adaRoom) {
-              throw new Error('Room already exists')
-            }
-          })
+  const Model = sequelize.Sequelize.Model
+  class Room extends Model {}
+  Room.init(
+    {
+      roomname: {
+        type: DataTypes.STRING,
+        validate: {
+          isUnique(value) {
+            Room.findOne({ where: { roomname: value } }).then((adaRoom) => {
+              if (adaRoom) {
+                throw new Error('room already exists')
+              }
+            })
+          },
+          notNull: { msg: 'name is required' },
+          notEmpty: { msg: 'room should not be empty' }
         },
-        notNull: { msg: 'Name is required' },
-        notEmpty: { msg: 'Room should not be empty' }
-      },
-      allowNull: false
+        allowNull: false
+      }
     },
-    host: DataTypes.STRING,
-    start: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Room',
-  });
-  return Room;
-};
+    { sequelize }
+  )
+
+  Room.associate = function(models) {
+    // associations can be defined here
+    Room.belongsToMany(models.User, { through: models.RoomUser })
+  }
+  return Room
+}
