@@ -14,23 +14,23 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/', routes)
 
 const rooms = [
-  {
-    id: 1,
-    name: "roomName",
-    host: "hostUsername",
-    start: true,
-    players: [{
-      username: "username",
-      correctAnswer: 5
-      }]
-  }
+  // {
+  //   id: 1,
+  //   name: "roomName",
+  //   host: "hostUsername",
+  //   start: true,
+  //   players: [{
+  //     username: "username",
+  //     correctAnswer: 5
+  //     }]
+  // }
 ]
 
 const players = [
-  {
-    username: 'Dumy',
-    room: "roomId"
-  }
+  // {
+  //   username: 'Dumy',
+  //   room: 
+  // }
 ]
 
 console.log(process.env.NODE_ENV)
@@ -38,10 +38,40 @@ console.log(process.env.NODE_ENV)
 io.on('connection', (socket) => {
   console.log('a user connected')
 
-  socket.on('createRoom', (roomname) => {
-    socket.join(roomname)
+  socket.on('userLogin', (username) => {
+    console.log('Users Login')
+    players.push({ username })
+    io.emit('USER_LOGIN', players)
+  })
 
-    io.emit('fetchRoomUlang')
+  socket.on('getUser',  () => {
+    console.log('get user')
+    socket.emit('USER_LOGIN', players) 
+  })
+
+  socket.on('getRooms',  () => {
+    console.log('get Rooms')
+    socket.emit('LIST_ROOMS', rooms) 
+  })
+  // rooms = {host, name}
+  socket.on('createRoom', (hostname) => {
+    const kamus = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
+    let roomname = ''
+    for (let i = 0; i < 10; i++) {
+      roomname += kamus[Math.floor(Math.random() * 62)]
+    }
+    rooms.push({
+      id: rooms.length + 1,
+      name: roomname,
+      host: hostname,
+      start: false,
+      players: []
+    })
+    // username: "username",
+    // correctAnswer: 5
+    // }
+
+    io.emit('LIST_ROOMS', rooms)
   })
   socket.on('joinRoom', (roomname) => {
     socket.join(roomname)
