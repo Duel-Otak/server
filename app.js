@@ -13,6 +13,26 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', routes)
 
+const rooms = [
+  {
+    id: 1,
+    name: "roomName",
+    host: "hostUsername",
+    start: true,
+    players: [{
+      username: "username",
+      correctAnswer: 5
+      }]
+  }
+]
+
+const players = [
+  {
+    username: 'Dumy',
+    room: "roomId"
+  }
+]
+
 console.log(process.env.NODE_ENV)
 
 io.on('connection', (socket) => {
